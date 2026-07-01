@@ -1,0 +1,125 @@
+import { Rocket, RocketStatus, CreateRocketInput, UpdateRocketInput } from '../types/rocket.js';
+
+class RocketService {
+  private rockets: Map<string, Rocket> = new Map();
+  private nextId: number = 1;
+
+  private readonly validStatuses: RocketStatus[] = ['available', 'in-flight', 'maintenance'];
+
+  /**
+   * Validate rocket data
+   */
+  private validateRocketData(data: Partial<CreateRocketInput>, isUpdate: boolean = false): string | null {
+    if (!isUpdate) {
+      // For creation, all fields are required
+      if (!data.name || typeof data.name !== 'string') {
+        return 'Name is required and must be a string';
+      }
+      if (data.capacity === undefined || typeof data.capacity !== 'number' || data.capacity <= 0) {
+        return 'Capacity is required and must be a positive number';
+      }
+      if (!data.status || !this.validStatuses.includes(data.status)) {
+        return `Status is required and must be one of: ${this.validStatuses.join(', ')}`;
+      }
+      if (data.range === undefined || typeof data.range !== 'number' || data.range <= 0) {
+        return 'Range is required and must be a positive number';
+      }
+    } else {
+      // For updates, validate only provided fields
+      if (data.name !== undefined && typeof data.name !== 'string') {
+        return 'Name must be a string';
+      }
+      if (data.capacity !== undefined && (typeof data.capacity !== 'number' || data.capacity <= 0)) {
+        return 'Capacity must be a positive number';
+      }
+      if (data.status !== undefined && !this.validStatuses.includes(data.status)) {
+        return `Status must be one of: ${this.validStatuses.join(', ')}`;
+      }
+      if (data.range !== undefined && (typeof data.range !== 'number' || data.range <= 0)) {
+        return 'Range must be a positive number';
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Get all rockets
+   */
+  getAllRockets(): Rocket[] {
+    return Array.from(this.rockets.values());
+  }
+
+  /**
+   * Get rocket by ID
+   */
+  getRocketById(id: string): Rocket | null {
+    return this.rockets.get(id) || null;
+  }
+
+  /**
+   * Create a new rocket
+   */
+  createRocket(data: CreateRocketInput): { rocket: Rocket; error?: undefined } | { error: string; rocket?: undefined } {
+    const validationError = this.validateRocketData(data);
+    if (validationError) {
+      return { error: validationError };
+    }
+
+    const id = String(this.nextId++);
+    const rocket: Rocket = {
+      id,
+      name: data.name,
+      capacity: data.capacity,
+      status: data.status,
+      range: data.range
+    };
+
+    this.rockets.set(id, rocket);
+    return { rocket };
+  }
+
+  /**
+   * Update a rocket
+   */
+  updateRocket(
+    id: string,
+    data: UpdateRocketInput
+  ): { rocket: Rocket; error?: undefined } | { error: string; rocket?: undefined } {
+    const rocket = this.rockets.get(id);
+    if (!rocket) {
+      return { error: `Rocket with id ${id} not found` };
+    }
+
+    // Prevent capacity modification if in-flight
+    if (data.capacity !== undefined && rocket.status === 'in-flight') {
+      return { error: 'Cannot modify capacity of a rocket that is in-flight' };
+    }
+
+    const validationError = this.validateRocketData(data, true);
+    if (validationError) {
+      return { error: validationError };
+    }
+
+    const updatedRocket: Rocket = {
+      ...rocket,
+      ...data
+    };
+
+    this.rockets.set(id, updatedRocket);
+    return { rocket: updatedRocket };
+  }
+
+  /**
+   * Delete a rocket
+   */
+  deleteRocket(id: string): { success: boolean; error?: undefined } | { error: string; success?: undefined } {
+    if (!this.rockets.has(id)) {
+      return { error: `Rocket with id ${id} not found` };
+    }
+
+    this.rockets.delete(id);
+    return { success: true };
+  }
+}
+
+export const rocketService = new RocketService();

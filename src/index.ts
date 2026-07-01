@@ -1,4 +1,5 @@
 import express, { Express, Request, Response } from 'express';
+import rocketsRouter from './routes/rockets.js';
 
 const app: Express = express();
 const PORT = process.env.PORT || 3000;
@@ -22,10 +23,14 @@ app.get('/', (req: Request, res: Response) => {
     message: 'Welcome to Astro Bookings API',
     version: '0.1.0',
     endpoints: {
-      health: '/health'
+      health: '/health',
+      rockets: '/rockets'
     }
   });
 });
+
+// Register routes
+app.use('/rockets', rocketsRouter);
 
 // 404 handler
 app.use((req: Request, res: Response) => {
