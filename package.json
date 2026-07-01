@@ -1,0 +1,25 @@
+{
+  "name": "astro-bookings",
+  "version": "0.1.0",
+  "description": "A modern Node.js + TypeScript application",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.12.14",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
