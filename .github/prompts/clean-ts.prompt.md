@@ -1,4 +1,11 @@
-# Clean Typescript code
+---
+name: clean-ts
+description: Clean TypeScript code in the repository.
+model: GPT-5 mini (copilot)
+tools: [execute, edit, search, web, agent, todo]
+---
+
+# Clean TypeScript code
 
 ## Role
 Act as a software developer.
@@ -7,7 +14,7 @@ Act as a software developer.
 Clean the code at the specified path, following best practices for TypeScript code style and conventions.
 
 ## Context
-The file or folder path to clean mus be provided in the input.
+The file or folder path to clean must be provided in the input.
 If not, do it for the last modified file in the repository.
 
 ## Steps to follow

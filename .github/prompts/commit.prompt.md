@@ -4,6 +4,7 @@ description: Commit changes to the repository.
 model: GPT-5 mini (copilot)
 tools: [execute, read]
 ---
+
 # Commit Changes
 
 ## Role

@@ -1,8 +1,8 @@
-import { Rocket, RocketStatus, CreateRocketInput, UpdateRocketInput } from '../types/rocket.js';
+import { Rocket, RocketStatus, CreateRocketInput, UpdateRocketInput } from '../types/rocket';
 
 class RocketService {
   private rockets: Map<string, Rocket> = new Map();
-  private nextId: number = 1;
+  private nextIdCounter: number = 1;
 
   private readonly validStatuses: RocketStatus[] = ['available', 'in-flight', 'maintenance'];
 
@@ -65,7 +65,7 @@ class RocketService {
       return { error: validationError };
     }
 
-    const id = String(this.nextId++);
+    const id = String(this.nextIdCounter++);
     const rocket: Rocket = {
       id,
       name: data.name,
