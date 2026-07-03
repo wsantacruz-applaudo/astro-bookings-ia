@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { rocketService } from '../services/rocketService.js';
+import { rocketService } from '../services/rocket-service.js';
 import { CreateRocketInput, UpdateRocketInput } from '../types/rocket.js';
 
 const router = Router();
@@ -90,4 +90,4 @@ router.delete('/:id', (req: Request, res: Response) => {
   res.status(204).send();
 });
 
-export default router;
+export const rocketsRouter = router;

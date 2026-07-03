@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-import rocketsRouter from './routes/rockets.js';
+import { rocketsRouter } from './routes/rockets.js';
 
 const app: Express = express();
 const PORT = process.env.PORT || 3000;

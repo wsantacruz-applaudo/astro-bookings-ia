@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 import express from 'express';
 import { Server } from 'http';
-import rocketsRouter from '../routes/rockets.js';
-import { rocketService } from '../services/rocketService.js';
+import { rocketsRouter } from '../routes/rockets.js';
+import { rocketService } from '../services/rocket-service.js';
 
 let app: any;
 let server: Server;

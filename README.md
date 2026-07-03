@@ -22,7 +22,7 @@ astro-bookings/
 │   ├── routes/
 │   │   └── rockets.ts             # Rockets API endpoints
 │   ├── services/
-│   │   └── rocketService.ts       # Business logic & validation
+│   │   └── rocket-service.ts       # Business logic & validation
 │   ├── types/
 │   │   └── rocket.ts              # TypeScript type definitions
 │   └── tests/

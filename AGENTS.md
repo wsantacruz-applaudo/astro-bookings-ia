@@ -52,7 +52,7 @@ astro-bookings/                   # Project root
     - routes/
       - rockets.ts                # Rockets API endpoints
     - services/
-      - rocketService.ts          # Business logic and validation
+      - rocket-service.ts          # Business logic and validation
     - types/
       - rocket.ts                 # TypeScript type definitions
     - tests/

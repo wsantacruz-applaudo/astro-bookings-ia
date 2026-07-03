@@ -55,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive specification in `specs/rockets/spec.md`
 - API usage examples and endpoints documented in README.md
 - Type definitions in `src/types/rocket.ts`
-- Service layer with RocketService class in `src/services/rocketService.ts`
+- Service layer with RocketService class in `src/services/rocket-service.ts`
 - Dedicated router with request handlers in `src/routes/rockets.ts`
 
 ### Project Dependencies
