@@ -52,7 +52,6 @@ app.use((err: Error, req: Request, res: Response) => {
 // Start server
 const server = app.listen(PORT, () => {
   console.log(`\n🚀 Server is running on http://localhost:${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/health\n`);
 });
 
 // Graceful shutdown
