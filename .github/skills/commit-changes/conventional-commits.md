@@ -5,7 +5,7 @@
 - Message Syntax template: 
 
 ```txt
-<type>[optional scope]: <description>
+<type>[optional scope]: <description> <emoji>
 [optional body]
 [optional footer]
 ```
