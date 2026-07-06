@@ -4,6 +4,8 @@
 
 Astro Bookings is a modern Node.js + TypeScript RESTful API for managing rocket lifecycle in the AstroBookings platform. It provides CRUD operations, state management, and comprehensive e2e test coverage for the Rockets API.
 
+Repository: https://github.com/wsantacruz-applaudo/astro-bookings-ia
+
 ## Technical Implementation
 
 ### Tech Stack

@@ -1,5 +1,7 @@
 # Astro Bookings
 
+Repository: https://github.com/wsantacruz-applaudo/astro-bookings-ia
+
 A modern Node.js + TypeScript application providing a RESTful API for managing rocket lifecycle in the AstroBookings platform. Version 1.0.0 includes the complete Rockets API with CRUD operations, state management, and comprehensive e2e test coverage.
 
 ## Features
