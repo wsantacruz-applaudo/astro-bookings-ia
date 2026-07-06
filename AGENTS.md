@@ -55,6 +55,8 @@ astro-bookings/                   # Project root
       - rockets.ts                # Rockets API endpoints
     - services/
       - rocket-service.ts          # Business logic and validation
+    - utils/
+      - logger.ts                 # Shared console logging utility
     - types/
       - rocket.ts                 # TypeScript type definitions
     - tests/

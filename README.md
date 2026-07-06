@@ -2,7 +2,7 @@
 
 Repository: https://github.com/wsantacruz-applaudo/astro-bookings-ia
 
-A modern Node.js + TypeScript application providing a RESTful API for managing rocket lifecycle in the AstroBookings platform. Version 1.0.0 includes the complete Rockets API with CRUD operations, state management, and comprehensive e2e test coverage.
+A modern Node.js + TypeScript application providing a RESTful API for managing rocket lifecycle in the AstroBookings platform. Version 1.1.0 includes the complete Rockets API with CRUD operations, state management, comprehensive e2e test coverage, and standardized runtime logging.
 
 ## Features
 
@@ -14,6 +14,14 @@ A modern Node.js + TypeScript application providing a RESTful API for managing r
 - **Delete Rockets**: Remove decommissioned or obsolete spacecraft
 - **State Management**: Prevent invalid operations based on rocket status (in-flight, maintenance, available)
 - **Validation**: Automatic validation of all required fields and business rules
+
+### Observability (v1.1.0)
+
+- **Standardized Logging Utility**: Shared logger at `src/utils/logger.ts`
+- **Consistent Log Shape**: `[timestamp] LEVEL context - message {optionalData}`
+- **Server Logging**: Startup, shutdown, unhandled rejection, and uncaught exception events
+- **Route Logging**: Entry, success, validation failures, not found results, and unexpected errors
+- **Service Logging**: Validation flow tracing and status transition logs
 
 ## Project Structure
 
@@ -266,6 +274,12 @@ GET /health
 ```
 
 ## Version History
+
+### v1.1.0 (2026-07-06) - Observability Release
+- ✓ Added shared console logger with `INFO`, `WARN`, `ERROR`, `DEBUG` levels
+- ✓ Added logging across server lifecycle and process-level error handlers
+- ✓ Added route and service flow logs for key Rockets API operations
+- ✓ No external dependencies introduced
 
 ### v1.0.0 (2026-07-01) - Initial Release
 - ✓ Complete Rockets API with CRUD operations
