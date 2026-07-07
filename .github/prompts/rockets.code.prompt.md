@@ -34,9 +34,17 @@ Ask for the spec file if not provided.
   
 3. **Have a plan**:
   - Generate the steps to implement (without coding details)
+
+4. **Prepare Git**
+  - Commit existing changes.
+  - Create a new branch called `feat/rockets`.
   
-4. **Write the Code**:
+5. **Write the Code**:
   - Write the functional code based on the plan.
+
+## Output Checklist
+- [ ] A new branch `feat/rockets` is created.
+- [ ] Modified or newly created code files as specified in the plan.
 
   
   
