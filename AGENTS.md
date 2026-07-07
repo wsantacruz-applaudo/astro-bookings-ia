@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-Astro Bookings is a modern Node.js + TypeScript RESTful API for managing rocket lifecycle in the AstroBookings platform. It provides CRUD operations, state management, and comprehensive e2e test coverage for the Rockets API.
+Astro Bookings is a modern Node.js + TypeScript RESTful API for managing rocket lifecycle in the AstroBookings platform. It provides CRUD operations, state management, comprehensive e2e test coverage for the Rockets API, and standardized runtime observability through a shared logging utility.
+
+Current version: **1.1.0**
 
 Repository: https://github.com/wsantacruz-applaudo/astro-bookings-ia
 
@@ -54,7 +56,7 @@ astro-bookings/                   # Project root
     - routes/
       - rockets.ts                # Rockets API endpoints
     - services/
-      - rocket-service.ts          # Business logic and validation
+      - rocket-service.ts         # Business logic and validation
     - utils/
       - logger.ts                 # Shared console logging utility
     - types/
@@ -66,6 +68,44 @@ astro-bookings/                   # Project root
       - spec.md                   # Complete API specification
   - dist/                         # Compiled JavaScript output
 ```
+
+### Logger Utility (`src/utils/logger.ts`)
+
+All modules use the shared logger instead of raw `console.log`. No external logging packages are used.
+
+**Log format:**
+```
+[ISO-timestamp] LEVEL context - message {"optional":"data"}
+```
+
+**Exported functions:**
+```ts
+import { log, info, warn, error, debug } from './utils/logger.js';
+
+log('INFO', 'context', 'message', { key: 'value' }); // generic
+info('context', 'message', { key: 'value' });         // INFO level
+warn('context', 'message', { key: 'value' });         // WARN level
+error('context', 'message', { key: 'value' });        // ERROR level
+debug('context', 'message', { key: 'value' });        // DEBUG level
+```
+
+**Log levels:** `INFO` | `WARN` | `ERROR` | `DEBUG`
+
+Use the `context` parameter as `module:operation` (e.g., `rockets:create`, `rocket-service:update`).
+
+### HTTP Endpoints
+
+In addition to the Rockets API, the server exposes:
+
+| Method | Path      | Description                                          |
+|--------|-----------|------------------------------------------------------|
+| GET    | `/`       | Returns API info and list of available endpoints     |
+| GET    | `/health` | Returns server health, uptime, and environment info  |
+| POST   | `/rockets`| Create a new rocket                                  |
+| GET    | `/rockets`| List all rockets                                     |
+| GET    | `/rockets/:id` | Get a rocket by ID                              |
+| PUT    | `/rockets/:id` | Update a rocket by ID                           |
+| DELETE | `/rockets/:id` | Delete a rocket by ID                           |
 
 ## Environment
 
